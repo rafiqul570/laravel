@@ -1,0 +1,73 @@
+﻿
+*** Xampp এ Laravel Run করার নিয়মঃ-
+
+1. অবশ্যই PC-তে Composer and Xampp and Git Download করে Install করে নিতে হবে।
+2. htdocs -এর ভিতরে একটি Project Folder তৈরি করে Project-এর নাম দিতে হবে।
+3. Project Folder টি Open করে তার ভিতরে Mouse এর Right বাটন click 
+   তারপর Git Bash Here  এর উপর click করলে git-Command open হবে।
+   তার ভিতরে নিচের Command চালাতে হবে।
+4. composer create-project --prefer-dist laravel/laravel blog (blog তৈরির জন্য)
+ 
+5. php artisan serve  (Run করার জন্য)
+
+
+//==============Login and Register Run/Authentication Inastall করার নিয়মঃ==========================
+
+1. composer require laravel/ui  (উৎস-Laravel>Security>Authentication)
+
+2. php artisan ui vue --auth    (উৎস-Laravel>Security>Authentication)
+
+//================প্রয়োজনিয় কিছু Command=======================
+1. composer create-project --prefer-dist laravel/laravel blog  (Project তৈরির জন্য)
+
+2. php artisan serve   (Project Run করার জন্য)
+
+3. php artisan make:model modelName -m  (Model + Migration file create এর জন্য)
+
+4.  php artisan make:model modelName -mc  (Model + Migration + Controller file create এর জন্য)
+
+5. php artisan make:controller PhotoController --resource  (controller তৈরির জন্য)
+
+//=========Migration=========
+1. php artisan migrate  (Migration Run করার জন্য)
+
+2. php artisan migrate:rollback
+
+3. php artisan migrate:refresh
+
+4. php artisan migrate:refresh --seed
+
+5. php artisan list
+
+6. composer require intervention/image
+
+//============seed===============
+
+1. php artisan make:seeder UserSeeder/AdminSeeder (রেজিঃ করার জন্য)
+
+2. php artisan db:seed
+
+//============Auth install=================
+
+1. composer require laravel/ui
+
+2. php artisan ui vue --auth
+
+3. npm install && npm run dev
+
+//==============Git Command SSh=======================
+1. ssh-keygen -t rsa -c "rafiqul.master5@gmail.com"
+
+//==============Git Command=======================
+1. git init
+2. git add .
+3. git status
+4. git commit -m "project Name"
+//5. git branch -M master
+6. git remote add origin https://github.com/rafiqul570/ecom.git
+7. git push origin master
+
+//==============Git Command cline=======================
+1. git pull
+
+
