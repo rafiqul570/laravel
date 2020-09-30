@@ -67,7 +67,14 @@
 6. git remote add origin https://github.com/rafiqul570/ecom.git
 7. git push origin master
 
-//==============Git Command cline=======================
-1. git pull
+//==============Git File Update=======================
+1. File select and git bash open, then
 
+2. git add .
+
+3. git commit -m "File nmae"
+
+4. git pull
+
+5. git push origin master
 
