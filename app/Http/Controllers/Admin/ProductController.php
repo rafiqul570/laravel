@@ -125,14 +125,53 @@ class ProductController extends Controller
 
    return Redirect()->route('manage.products')->with('update','Product Updated Successfully.');
     }
-//====================Update Porduct image=============================
-    
-    public function updateImage(Request $request){
-              $product_id = $request->id;
-              $old_one = $request->img_one;
-              $old_two = $request->img_two;
-              $old_three = $request->img_three;
+
+//=======Grup Image Update======
+              if ($request->has('image_one') && $request->has('image_two') && $request->has('image_three')) {
+              unlink($old_one);
+              unlink($old_two);
+               unlink($old_three);
+             
+             $image_one = $request->file('image_one');
+             $name_gen = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
+             Image::make($image_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);
+             $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+
+             Product::findOrFail($product_id)->Update([
+              'image_one' => $img_url1,
+              'update_at' => Carbon::now(),
+
+            ]);
+
+              $image_two = $request->file('image_two');
+             $name_gen = hexdec(uniqid()).'.'.$image_two->getClientOriginalExtension();
+             Image::make($image_two)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);
+             $img_url2 = 'fontend/img/product/upload/'.$name_gen;
+
+             Product::findOrFail($product_id)->Update([
+              'image_two' => $img_url2,
+              'update_at' => Carbon::now(),
+
+            ]);
+
+             $image_three = $request->file('image_three');
+             $name_gen = hexdec(uniqid()).'.'.$image_three->getClientOriginalExtension();
+             Image::make($image_three)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);
+             $img_url3 = 'fontend/img/product/upload/'.$name_gen;
+
+             Product::findOrFail($product_id)->Update([
+              'image_three' => $img_url3,
+              'update_at' => Carbon::now(),
+
+            ]);
           
+      return Redirect()->route('manage.products')->with('update','Image Updated Successfully.');
+          
+
+          }
+
+           
+ //=======Singal Image Update======         
           if ($request->has('image_one')) {
              unlink($old_one);
              
