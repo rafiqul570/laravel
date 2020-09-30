@@ -117,8 +117,12 @@
          
               <button type="submit" class="btn btn-info mg-r-5">Update data</button>
               </form>
-            <form action="{{route('update.products')}}" method="POST" enctype="multipart/form-data">
-              @csrf
+            <form action="{{route('update.image')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="id" value="{{$product->id}}">
+            <input type="hidden" name="img_one" value="{{$product->image_one}}">
+            <input type="hidden" name="img_two" value="{{$product->image_two}}">
+            <input type="hidden" name="img_three" value="{{$product->image_three}}">
             <div class="row row-sm mt-5"> 
             <div class="col-lg-4">
                 <div class="form-group">

@@ -58,3 +58,4 @@ Route::post('admin/products/store','Admin\ProductController@storeProduct')->name
 Route::get('admin/products/manage','Admin\ProductController@manageProduct')->name('manage.products');
 Route::get('admin/products/edit/{id}','Admin\ProductController@editProduct');
 Route::post('admin/products/update','Admin\ProductController@updateProduct')->name('update.products');
+Route::post('admin/products/image-update','Admin\ProductController@updateImage')->name('update.image');
