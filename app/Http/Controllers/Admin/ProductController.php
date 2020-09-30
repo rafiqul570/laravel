@@ -125,7 +125,8 @@ class ProductController extends Controller
 
    return Redirect()->route('manage.products')->with('update','Product Updated Successfully.');
     }
-
+//====================Update Porduct image=============================
+    
     public function updateImage(Request $request){
               $product_id = $request->id;
               $old_one = $request->img_one;
