@@ -22,14 +22,14 @@ class ProductController extends Controller
         $this->middleware('auth:admin');
     }
 
-//====================Add Porduct=============================
+//====================Add Porduct==========================================================
     public function addProduct()
     {
        $categories = Category::latest()->get();
        $brands = Brand::latest()->get();
        return view('admin.product.add',compact('categories','brands'));
     }
-//==================Store Product=============================
+//==================Store Product============================================================
     public function storeProduct(Request $request)
     {
       $request->validate([                  //Validetion//
@@ -67,7 +67,7 @@ class ProductController extends Controller
        Image::make($image_three)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);
        $img_url3 = 'fontend/img/product/upload/'.$name_gen;
 
-//=====Insert Product========
+//=====Insert Product=========================================================================
        Product::insert([
               'category_id' => $request->category_id,
               'brand_id' => $request->brand_id,
@@ -90,14 +90,14 @@ class ProductController extends Controller
     }
 
 
-//====================Manage Porduct=============================
+//====================Manage Porduct=============================================================
 
      public function manageProduct()
     {
        $products = Product::latest()->get();
        return view('admin.product.manage',compact('products'));
     }
-//====================Edit Porduct=============================
+//====================Edit Porduct=================================================================
      public function editProduct($product_id)
     {
         $product = product::findOrFail($product_id);
@@ -106,7 +106,7 @@ class ProductController extends Controller
         return view('admin.product.edit',compact('product','categories','brands'));
     }
 
-//====================Update Porduct data=============================
+//====================Update Porduct data===========================================================
     public function updateProduct(Request $request){
       $product_id = $request->id;
       Product::findOrFail($product_id)->Update([
@@ -126,7 +126,7 @@ class ProductController extends Controller
    return Redirect()->route('manage.products')->with('update','Product Updated Successfully.');
     }
 
-//=======Grup Image Update======
+//=======Grup Image Update====================================================================================
               if ($request->has('image_one') && $request->has('image_two') && $request->has('image_three')) {
               unlink($old_one);
               unlink($old_two);
@@ -171,7 +171,7 @@ class ProductController extends Controller
           }
 
            
- //=======Singal Image Update======         
+ //=======Singal Image Update=============================================================================         
           if ($request->has('image_one')) {
              unlink($old_one);
              
@@ -230,6 +230,36 @@ class ProductController extends Controller
           }
    
     }
+
+//==============Product Delete============================================================================
+         public function destroy($id){
+
+            $image = Product::findOrFail($id);
+            $img_one = $image->image_one; 
+            $img_two = $image->image_two;
+            $img_three = $image->image_three;
+
+            unlink($img_one);
+            unlink($img_two);
+            unlink($img_three); 
+
+            Product::findOrFail($id)->delete();
+
+        return Redirect()->back()->with('delete','Deleted Successfully.');
+    }
+
+//========================Product Inactive================================================================
+         public function inactive($id){
+            Product::find($id)->update(['status' => 0]);
+            return Redirect()->back()->with('inactive','Product Inactive Successfully.');
+        }
+//========================Product Active==================================================================
+        public function active($id){
+            Product::find($id)->update(['status' => 1]);
+            return Redirect()->back()->with('active','Product activated Successfully.');
+        }
+        
+    
     
     
 }
