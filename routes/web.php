@@ -59,3 +59,7 @@ Route::get('admin/products/manage','Admin\ProductController@manageProduct')->nam
 Route::get('admin/products/edit/{id}','Admin\ProductController@editProduct');
 Route::post('admin/products/update','Admin\ProductController@updateProduct')->name('update.products');
 Route::post('admin/products/image-update','Admin\ProductController@updateImage')->name('update.image');
+Route::get('admin/products/delete/{id}','Admin\ProductController@destroy');
+Route::get('admin/products/inactive/{id}','Admin\ProductController@inactive');
+Route::get('admin/products/active/{id}','Admin\ProductController@active');
+
